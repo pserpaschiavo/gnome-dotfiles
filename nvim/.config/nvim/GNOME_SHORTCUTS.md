@@ -1,28 +1,20 @@
 # Atalhos GNOME para Teclado 60% + Neovim Workflow
 
-> 🎯 **Filosofia**: Usar `Super` (tecla Windows) para GNOME, mantendo `Ctrl` livre para Neovim
+> 🎯 **Filosofia**: Usar `Super` para GNOME, `Super + Ctrl` para TUI apps, mantendo `Ctrl` livre para Neovim
 
-## 🖥️ Gerenciamento de Janelas (estilo Neovim hjkl)
+## 🖥️ Navegação entre Workspaces (estilo Neovim hjkl)
 
 | Atalho | Ação | Comando GNOME |
 |--------|------|---------------|
-| `Super + h` | Mover janela para workspace esquerda | `switch-to-workspace-left` |
-| `Super + l` | Mover janela para workspace direita | `switch-to-workspace-right` |
-| `Super + j` | Mover janela para workspace baixo | `switch-to-workspace-down` |
-| `Super + k` | Mover janela para workspace cima | `switch-to-workspace-up` |
-| `Super + Shift + h` | Mover janela para monitor esquerdo | `move-to-monitor-left` |
-| `Super + Shift + l` | Mover janela para monitor direito | `move-to-monitor-right` |
+| `Super + h` | Navegar para workspace esquerda | `switch-to-workspace-left` |
+| `Super + l` | Navegar para workspace direita | `switch-to-workspace-right` |
+| `Super + Shift + h` | Mover janela para workspace esquerda | `move-to-workspace-left` |
+| `Super + Shift + l` | Mover janela para workspace direita | `move-to-workspace-right` |
 
-## 📐 Tiling de Janelas (sem setas)
+> 💡 **Navegação horizontal otimizada** - Sem necessidade de j/k ou setas!
 
-| Atalho | Ação |
-|--------|------|
-| `Super + Left` | Janela à esquerda (metade) |
-| `Super + Right` | Janela à direita (metade) |
-| `Super + Up` | Maximizar janela |
-| `Super + Down` | Restaurar/Minimizar |
+## 📐 Tiling de Janelas (Teclado 60% - SEM SETAS!)
 
-**Alternativa para 60% (sem setas):**
 | Atalho | Ação |
 |--------|------|
 | `Super + [` | Janela à esquerda (metade) |
@@ -30,37 +22,40 @@
 | `Super + =` | Maximizar janela |
 | `Super + -` | Restaurar janela |
 
+> ✅ **100% compatível com teclado 60%** - Nenhuma tecla Fn necessária!
+
 ## 🚀 Lançadores Rápidos
 
 | Atalho | Ação |
 |--------|------|
 | `Super + Return` | Abrir terminal (Ghostty) |
-| `Super + e` | Abrir explorador de arquivos |
-| `Super + b` | Abrir navegador |
+| `Super + e` | Nautilus (explorador de arquivos GUI) |
 | `Super + Space` | Launcher/Overview |
 | `Super + /` | Mostrar atalhos |
 
-## 🎯 Aplicações TUI Recomendadas
+## 🎯 Aplicações TUI (Terminal User Interface)
+
+> 💡 **Estratégia**: `Super + Ctrl + <letra>` para TUI apps evita conflitos com GNOME e Neovim
 
 ### File Managers
 | Atalho | App | Ação |
 |--------|-----|------|
-| `Super + r` | `yazi` | File manager rápido em Rust |
-| `Super + Ctrl + e` | `ranger` | File manager estilo vim |
-
-### Dashboards & Monitoring
-| Atalho | App | Ação |
-|--------|-----|------|
-| `Super + Ctrl + b` | `btop` | Monitor de sistema avançado |
-| `Super + i` | `htop` | Monitor de processos |
-| `Super + Ctrl + n` | `nethogs` | Monitor de tráfego de rede |
+| `Super + Ctrl + e` | `yazi` | File manager rápido em Rust |
+| `Super + Ctrl + r` | `ranger` | File manager estilo vim |
 
 ### Development
 | Atalho | App | Ação |
 |--------|-----|------|
-| `Super + g` | `lazygit` | Git TUI (coeso com Neovim) |
-| `Super + d` | `lazydocker` | Docker TUI |
+| `Super + Ctrl + g` | `lazygit` | Git TUI (coeso com Neovim) |
+| `Super + Ctrl + d` | `lazydocker` | Docker TUI |
 | `Super + Ctrl + k` | `k9s` | Kubernetes TUI |
+
+### Monitoring
+| Atalho | App | Ação |
+|--------|-----|------|
+| `Super + Ctrl + b` | `btop` | Monitor de sistema avançado |
+| `Super + Ctrl + h` | `htop` | Monitor de processos |
+| `Super + Ctrl + n` | `nethogs` | Monitor de tráfego de rede |
 
 ### Multimedia
 | Atalho | App | Ação |
@@ -80,7 +75,7 @@
 | `Super + Ctrl + t` | `taskwarrior-tui` | Gerenciador de tarefas |
 | `Super + Ctrl + c` | `calcurse` | Calendário/agenda |
 
-> ⚠️ **Nota sobre Ctrl**: `Super + Ctrl + h/l` já está mapeado para navegação de workspaces. Se preferir, remova esses e use apenas hjkl sem modificador.
+> ✅ **Vantagem**: Nenhum conflito com navegação hjkl do GNOME ou comandos do Neovim!
 
 ## 🔄 Controle de Janelas
 
@@ -88,17 +83,17 @@
 |--------|------|
 | `Super + q` | Fechar janela |
 | `Super + f` | Toggle fullscreen |
-| `Super + m` | Minimizar |
 | `Super + Tab` | Trocar entre aplicativos |
 | `Alt + Tab` | Trocar entre janelas do mesmo app |
 
-## 🎨 Workspaces (inspirado em Neovim tabs)
+## 🎨 Workspaces
 
 | Atalho | Ação |
 |--------|------|
-| `Super + 1-9` | Ir para workspace 1-9 |
-| `Super + Shift + 1-9` | Mover janela para workspace 1-9 |
-| `Super + h/l/j/k` | Navegar workspaces (direções vim) |
+| `Super + h/l` | Navegar workspaces horizontalmente (estilo vim) |
+| `Super + Shift + h/l` | Mover janela entre workspaces |
+| `Super + 1-9` | Ir para workspace específico (se configurado) |
+| `Super + Shift + 1-9` | Mover janela para workspace específico |
 
 ## 📋 Sistema
 
@@ -106,33 +101,29 @@
 |--------|------|
 | `Super + p` | Configurações de display (projetor) |
 | `Super + v` | Notificações |
-| `Super + s` | Screenshot área selecionada |
-| `Super + Shift + s` | Screenshot tela completa |
+| `Super + s` | Screenshot interativo |
+| `Super + Shift + s` | Screenshot área selecionada |
 
 ---
 
-## 🛠️ Aplicar Configurações (gsettings)
+## 🛠️ Comandos de Configuração (gsettings)
 
-### 1. Navegação entre Workspaces (hjkl style)
+### 1. Navegação entre Workspaces (horizontal h/l)
 
 ```bash
-# Navegar workspaces
+# Navegar workspaces (horizontal apenas - otimizado para 60%)
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Super>k']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>j']"
 
 # Mover janelas entre workspaces
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Super><Shift>h']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Shift>l']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-up "['<Super><Shift>k']"
-gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-down "['<Super><Shift>j']"
 ```
 
-### 2. Tiling sem Setas (60% friendly)
+### 2. Tiling SEM SETAS (100% compatível com teclado 60%)
 
 ```bash
-# Tiling alternativo
+# Tiling usando colchetes (substitui as setas completamente!)
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>bracketleft']"
 gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>bracketright']"
 gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>equal']"
@@ -142,70 +133,71 @@ gsettings set org.gnome.desktop.wm.keybindings unmaximize "['<Super>minus']"
 ### 3. Controle de Janelas
 
 ```bash
-# Fechar/Minimizar/Fullscreen
+# Fechar/Fullscreen
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q', '<Alt>F4']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
-gsettings set org.gnome.desktop.wm.keybindings minimize "['<Super>m']"
 
 # Toggle overview
 gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>space']"
 ```
 
-### 4. Lançadores Personalizados
+### 4. Lançadores de Aplicações TUI
 
 ```bash
-# Terminal (ajuste o comando para Ghostty)
-gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "['<Super>Return']"
+# Configurar lista de custom keybindings
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/']"
 
-# File Manager TUI (yazi)
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/']"
-
-# Ghostty
+# Ghostty terminal - Super+Return
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Ghostty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ghostty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
 
-# Yazi file manager
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Yazi'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'ghostty -e yazi'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>r'
+# Nautilus (file manager GUI) - Super+e
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ name 'Nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ command 'nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ binding '<Super>e'
 
-# Lazygit
+# Yazi file manager - Ctrl+Super+e
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Yazi File Manager'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'ghostty -e yazi'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Control><Super>e'
+
+# Lazygit - Ctrl+Super+g
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Lazygit'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'ghostty -e lazygit'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super>g'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control><Super>g'
 
-# Btop system monitor
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Btop'
+# Btop - Ctrl+Super+b
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Btop System Monitor'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'ghostty -e btop'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super><Shift>h'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super><Ctrl>b'
 
-# Lazydocker
+# Lazydocker - Ctrl+Super+d
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Lazydocker'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command 'ghostty -e lazydocker'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Super>d'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Control><Super>d'
 
-# Htop
+# Htop - Ctrl+Super+h
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'Htop'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command 'ghostty -e htop'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Super>i'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Control><Super>h'
 
-# K9s (se usar Kubernetes)
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ name 'K9s'
+# K9s - Ctrl+Super+k
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ name 'K9s Kubernetes'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ command 'ghostty -e k9s'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ binding '<Super><Shift>k'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ binding '<Super><Ctrl>k'
 
-# Spotatui (Spotify TUI)
+# Spotatui - Ctrl+Super+s
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ name 'Spotatui'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ command 'ghostty -e spotatui'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ binding '<Super><Ctrl>s'
 
-# BrogueCE (Roguelike game)
+# BrogueCE - Ctrl+Super+p
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ name 'BrogueCE'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ command 'ghostty -e brogue'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ binding '<Super><Ctrl>p'
 
-# ytui-music (YouTube Music TUI)
+# ytui-music - Ctrl+Super+m
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ name 'ytui-music'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ command 'ghostty -e ytui-music'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ binding '<Super><Ctrl>m'
@@ -214,201 +206,163 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 ### 5. Screenshots
 
 ```bash
-gsettings set org.gnome.shell.keybindings screenshot "['<Super><Shift>s']"
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super>s']"
-```
-
-### 6. Workspaces Numéricos
-
-```bash
-# Ir para workspace específico
-for i in {1..9}; do
-  gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-$i "['<Super>$i']"
-  gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-$i "['<Super><Shift>$i']"
-done
+gsettings set org.gnome.shell.keybindings screenshot "['<Super><Shift>s']"
 ```
 
 ---
 
-## 🚀 Script de Instalação Rápida
+## 🚀 Script de Instalação Completo
 
-Salve isso em `~/setup-gnome-keys.sh`:
+Salve em `~/setup-gnome-keys.sh` e execute com `bash ~/setup-gnome-keys.sh`:
 
 ```bash
 #!/bin/bash
 
 echo "🎹 Configurando atalhos GNOME para teclado 60%..."
+echo ""
 
-# Workspaces (hjkl)
+# 1. Workspaces (navegação horizontal h/l)
+echo "📐 Configurando navegação de workspaces..."
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left "['<Super>h']"
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right "['<Super>l']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-up "['<Super>k']"
-gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-down "['<Super>j']"
-
-# Mover janelas
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-left "['<Super><Shift>h']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-right "['<Super><Shift>l']"
 
-# Tiling (sem setas)
+# 2. Tiling SEM SETAS
+echo "🪟 Configurando tiling de janelas (SEM SETAS)..."
 gsettings set org.gnome.mutter.keybindings toggle-tiled-left "['<Super>bracketleft']"
 gsettings set org.gnome.mutter.keybindings toggle-tiled-right "['<Super>bracketright']"
 gsettings set org.gnome.desktop.wm.keybindings maximize "['<Super>equal']"
 gsettings set org.gnome.desktop.wm.keybindings unmaximize "['<Super>minus']"
 
-# Controle
+# 3. Controle de janelas
+echo "🎛️  Configurando controle de janelas..."
 gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
 gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>space']"
 
-# Screenshots
+# 4. Screenshots
+echo "📸 Configurando screenshots..."
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super>s']"
+gsettings set org.gnome.shell.keybindings screenshot "['<Super><Shift>s']"
 
-echo "🎯 Configurando lançadores de aplicações TUI..."
-
-# Configurar custom keybindings
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/']"
+# 5. Custom keybindings para TUI apps
+echo "🚀 Configurando lançadores de aplicações TUI..."
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/']"
 
 # Ghostty terminal
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ name 'Ghostty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ command 'ghostty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/ binding '<Super>Return'
 
-# Yazi (file manager TUI)
+# Nautilus (GUI file manager)
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ name 'Nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ command 'nautilus'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom10/ binding '<Super>e'
+
+# Yazi (TUI file manager)
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ name 'Yazi File Manager'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command 'ghostty -e yazi'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Super>r'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Control><Super>e'
 
-# Lazygit (Git TUI)
+# Lazygit
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Lazygit'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'ghostty -e lazygit'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super>g'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control><Super>g'
 
-# Btop (system monitor) - TUI apps usam Ctrl
+# Btop
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Btop System Monitor'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'ghostty -e btop'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super><Ctrl>b'
 
-# Lazydocker (Docker TUI)
+# Lazydocker
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ name 'Lazydocker'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ command 'ghostty -e lazydocker'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Super>d'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/ binding '<Control><Super>d'
 
-# Htop (process monitor)
+# Htop
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ name 'Htop'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ command 'ghostty -e htop'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Super>i'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom5/ binding '<Control><Super>h'
 
-# K9s (Kubernetes TUI) - TUI apps usam Ctrl
+# K9s
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ name 'K9s Kubernetes'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ command 'ghostty -e k9s'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom6/ binding '<Super><Ctrl>k'
 
-# Spotatui - TUI Spotify com streaming nativo
+# Spotatui
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ name 'Spotatui'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ command 'ghostty -e spotatui'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom7/ binding '<Super><Ctrl>s'
 
-# ytui-music - YouTube Music TUI
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ name 'ytui-music'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ command 'ghostty -e ytui-music'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ binding '<Super><Ctrl>m'
-
-# BrogueCE - Roguelike game
+# BrogueCE
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ name 'BrogueCE'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ command 'ghostty -e brogue'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom8/ binding '<Super><Ctrl>p'
 
-echo "✅ Atalhos configurados!"
+# ytui-music
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ name 'ytui-music'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ command 'ghostty -e ytui-music'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom9/ binding '<Super><Ctrl>m'
+
 echo ""
-echo "📦 Aplicações TUI recomendadas para instalar:"
-echo "  • yazi        - File manager rápido (Rust)"
-echo "  • lazygit     - Git TUI fantástico"
-echo "  • lazydocker  - Docker TUI"
-echo "  • btop        - Monitor de sistema moderno"
-echo "  • k9s         - Kubernetes TUI (se usar K8s)"
-echo "  • spotatui    - Spotify TUI com streaming nativo"
-echo "  • ytui-music  - YouTube Music TUI"
-echo "  • brogue      - BrogueCE roguelike game"
-echo "  • ranger      - File manager alternativo"
+echo "✅ Configuração concluída!"
+echo ""
+echo "📋 Resumo dos atalhos principais:"
+echo "  • Super+h/l           - Navegar workspaces"
+echo "  • Super+[/]           - Tile esquerda/direita"
+echo "  • Super+=/−           - Maximizar/Restaurar"
+echo "  • Super+Return        - Ghostty terminal"
+echo "  • Super+e             - Nautilus (GUI)"
+echo "  • Ctrl+Super+e        - Yazi (TUI)"
+echo "  • Ctrl+Super+g        - Lazygit"
+echo "  • Ctrl+Super+d        - Lazydocker"
+echo "  • Ctrl+Super+b        - Btop"
+echo "  • Ctrl+Super+h        - Htop"
 echo ""
 echo "💡 Pressione Super+/ para ver todos os atalhos no GNOME"
-```
-
-**Execute:**
-```bash
-chmod +x ~/setup-gnome-keys.sh
-~/setup-gnome-keys.sh
 ```
 
 ---
 
 ## 🎯 Consistência com Neovim
 
-| Conceito | Neovim | GNOME |
-|----------|--------|-------|
-| Navegação básica | `hjkl` | `Super + hjkl` (workspaces) |
+| Conceito | Neovim | GNOME (teclado 60%) |
+|----------|--------|---------------------|
+| Navegação horizontal | `h/l` | `Super + h/l` (workspaces) |
 | Fechar | `<leader>q` | `Super + q` |
-| Maximizar/Resize | `<leader>=/−` | `Super + =/−` |
-| Tiling horizontal | `<leader>[/]` | `Super + [/]` |
-| Explorer | `<leader>e` | `Super + e` |
+| Maximizar/Resize | Custom | `Super + =/−` |
+| Tiling horizontal | Custom | `Super + [/]` |
+| Explorer | `<leader>e` | `Super + e` (Nautilus), `Ctrl+Super+e` (Yazi) |
 | Search/Find | `<leader>f` | `Super + space` (launcher) |
 
-## 📝 Notas
+> ✅ **Zero conflitos**: Super para GNOME, Ctrl para Neovim, Super+Ctrl para TUI apps
 
-- ✅ **Super (Windows)** não conflita com Neovim (que usa Ctrl/Leader)
-- ✅ **hjkl** para navegação (mesma lógica do Vim)
-- ✅ **Sem dependência de setas** (perfeito para 60%)
-- ✅ **Consistência** entre terminal e desktop
-- 💡 Use `Super + /` para lembrar dos atalhos no GNOME
+---
 
-## 🎯 Apps TUI Essenciais para DevOps/Python
+## 📝 Notas Importantes
 
-Baseado na sua stack, recomendo instalar:
+### ✅ Vantagens desta Configuração
 
-```bash
-# File Management
-yay -S yazi              # File manager moderno em Rust
-yay -S ranger            # Alternativa clássica
+- **100% sem setas** - Perfeito para teclado 60%
+- **Sem tecla Fn** - Todos os atalhos usam teclas nativas
+- **Navegação horizontal** - Super+h/l para workspaces (como abas no Neovim)
+- **Tiling intuitivo** - Super+[/] (esquerda/direita), Super+=/− (maximizar/restaurar)
+- **Separação clara**:
+  - `Super` → GNOME (navegação, tiling)
+  - `Super + Ctrl` → TUI apps (yazi, lazygit, btop, etc)
+  - `Ctrl` → Livre para Neovim!
 
-# Development
-yay -S lazygit           # Git TUI (Must-have!)
-yay -S lazydocker        # Docker TUI
-yay -S k9s               # Kubernetes TUI (se usar)
+### 🎯 Muscle Memory Compartilhada
 
-# Monitoring
-yay -S btop              # System monitor moderno
-yay -S htop              # Process monitor clássico
-yay -S nethogs           # Network traffic monitor
-
-# Multimedia
-yay -S spotatui          # Spotify TUI com streaming nativo (Go)
-yay -S ytui-music        # YouTube Music TUI (Rust)
-
-# Games
-yay -S brogue-ce         # Beautiful roguelike dungeon crawler
-
-# Productivity (opcional)
-yay -S taskwarrior-tui   # Task management
-yay -S cmus              # Music player
-```
-
-### Alternativas Ubuntu/Debian:
-```bash
-sudo apt install yazi lazygit btop htop ranger
-# lazydocker, k9s e brogue-ce: baixar releases do GitHub
-# spotatui: baixar release do GitHub (LargeModGames/spotatui)
-# ytui-music: cargo install ytui-music
-```
-
-## 🔗 Integração com Neovim
-
-Muitas dessas ferramentas compartilham keybindings vim-like:
+Muitas ferramentas TUI usam navegação vim-like:
 
 | App | Navegação | Filosofia |
 |-----|-----------|-----------|
 | `yazi` | hjkl | Vim-native |
 | `lazygit` | hjkl | Vim-inspired |
-| `ranger` | hjkl | Vim-native |
 | `btop` | hjkl + vim | Vim-friendly |
+| `ranger` | hjkl | Vim-native |
 
-**Vantagem**: Muscle memory compartilhada entre Neovim e TUIs!
+**Resultado**: Mesma navegação em Neovim, GNOME e apps TUI!
