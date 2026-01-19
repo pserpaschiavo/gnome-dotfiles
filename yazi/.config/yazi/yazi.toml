@@ -1,0 +1,43 @@
+# Yazi Configuration - Modern Terminal File Manager
+# https://yazi-rs.github.io/
+
+[manager]
+ratio = [1, 4, 3]
+sort_by = "modified"
+sort_sensitive = false
+sort_reverse = true
+sort_dir_first = true
+linemode = "size"
+show_hidden = true
+show_symlink = true
+
+[preview]
+tab_size = 2
+max_width = 600
+max_height = 900
+cache_dir = ""
+
+[opener]
+edit = [
+	{ run = 'nvim "$@"', block = true, for = "unix" },
+]
+open = [
+	{ run = 'xdg-open "$@"', desc = "Open", for = "unix" },
+]
+
+[open]
+rules = [
+	{ name = "*/", use = ["edit", "open", "reveal"] },
+	{ mime = "text/*", use = ["edit", "reveal"] },
+	{ mime = "image/*", use = ["open", "reveal"] },
+	{ mime = "video/*", use = ["open", "reveal"] },
+	{ mime = "audio/*", use = ["open", "reveal"] },
+	{ mime = "application/json", use = ["edit", "reveal"] },
+	{ mime = "*/javascript", use = ["edit", "reveal"] },
+	{ mime = "*", use = ["open", "reveal"] },
+]
+
+[tasks]
+micro_workers = 5
+macro_workers = 10
+bizarre_retry = 5

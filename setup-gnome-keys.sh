@@ -23,8 +23,11 @@ gsettings set org.gnome.desktop.wm.keybindings close "['<Super>q']"
 gsettings set org.gnome.desktop.wm.keybindings toggle-fullscreen "['<Super>f']"
 gsettings set org.gnome.shell.keybindings toggle-overview "['<Super>space']"
 
-# Screenshots
+# Screenshots (teclado 60% - sem Print Screen)
 gsettings set org.gnome.shell.keybindings show-screenshot-ui "['<Super>s']"
+gsettings set org.gnome.shell.keybindings screenshot "['<Super><Alt>s']"
+gsettings set org.gnome.shell.keybindings screenshot-window "['<Super>w']"
+gsettings set org.gnome.shell.keybindings area-screenshot "['<Super><Shift>s']"
 
 echo "🎯 Configurando lançadores de aplicações TUI..."
 
@@ -91,7 +94,9 @@ echo "  • btop        - Monitor de sistema moderno"
 echo "  • k9s         - Kubernetes TUI (se usar K8s)"
 echo "  • spotatui    - Spotify TUI com streaming nativo"
 echo "  • ytui-music  - YouTube Music TUI"
+echo "  • discordo    - Discord TUI"
+echo "  • bombadillo  - Gopher/Gemini browser"
+echo "  • quorum      - Session messaging TUI"
 echo "  • brogue      - BrogueCE roguelike game"
-echo "  • ranger      - File manager alternativo"
 echo ""
 echo "💡 Pressione Super+/ para ver todos os atalhos no GNOME"
