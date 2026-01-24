@@ -1,21 +1,96 @@
 #!/bin/bash
 # Script de instalação de aplicações TUI e ferramentas essenciais
 # Para Ubuntu/Debian com APT
+# Uso: ./install-packages-ubuntu.sh [--dry-run] [--debug] [--yes]
 
 set -e
 
-echo "🚀 Instalando aplicações TUI e ferramentas essenciais (Ubuntu)..."
+# Variáveis de controle
+DRY_RUN=false
+DEBUG=false
+AUTO_YES=false
+
+# Processar argumentos
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --dry-run)
+      DRY_RUN=true
+      shift
+      ;;
+    --debug)
+      DEBUG=true
+      set -x
+      shift
+      ;;
+    --yes|-y)
+      AUTO_YES=true
+      shift
+      ;;
+    --help|-h)
+      echo "Uso: $0 [OPÇÕES]"
+      echo ""
+      echo "Opções:"
+      echo "  --dry-run    Simula instalação sem fazer mudanças"
+      echo "  --debug      Ativa modo debug (set -x)"
+      echo "  --yes, -y    Responde 'sim' automaticamente para todas as perguntas"
+      echo "  --help, -h   Mostra esta mensagem"
+      exit 0
+      ;;
+    *)
+      echo "Opção desconhecida: $1"
+      echo "Use --help para ver opções disponíveis"
+      exit 1
+      ;;
+  esac
+done
+
+if $DRY_RUN; then
+  echo "🔍 MODO DRY-RUN: Nenhuma instalação será realizada"
+  echo ""
+fi
+
+echo "🚀 Instalando aplicações TUI e ferramentas essenciais (Ubuntu/Debian)..."
 echo ""
 
 # Cores para output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
+
+# Log file
+LOG_FILE="$HOME/.dotfiles-install.log"
+echo "📝 Log: $LOG_FILE"
+echo "" > "$LOG_FILE"
+echo "=== Instalação iniciada em $(date) ===" >> "$LOG_FILE"
+
+# Função para logging
+log() {
+    echo "[$(date '+%H:%M:%S')] $*" >> "$LOG_FILE"
+    if $DEBUG; then
+        echo -e "${BLUE}[DEBUG]${NC} $*"
+    fi
+}
 
 # Função para verificar se um comando existe
 command_exists() {
     command -v "$1" >/dev/null 2>&1
+}
+
+# Função para verificar dependências
+check_dependency() {
+    local dep=$1
+    local package=${2:-$1}
+    
+    if ! command_exists "$dep"; then
+        echo -e "${RED}✗${NC} Dependência faltando: $dep"
+        echo "  Instale com: sudo apt install $package"
+        log "ERRO: Dependência faltando - $dep"
+        return 1
+    fi
+    log "OK: Dependência $dep encontrada"
+    return 0
 }
 
 # Função para instalar via APT
@@ -25,9 +100,23 @@ install_apt() {
     
     if command_exists "$binary"; then
         echo -e "${GREEN}✓${NC} $binary já está instalado"
+        log "SKIP: $binary já instalado"
     else
         echo -e "${YELLOW}⏳${NC} Instalando $package..."
-        sudo apt install -y "$package"
+        log "INSTALL: Iniciando instalação de $package"
+        
+        if $DRY_RUN; then
+            echo -e "${BLUE}[DRY-RUN]${NC} sudo apt install -y $package"
+        else
+            if sudo apt install -y "$package" >> "$LOG_FILE" 2>&1; then
+                echo -e "${GREEN}✓${NC} $package instalado com sucesso"
+                log "SUCCESS: $package instalado"
+            else
+                echo -e "${RED}✗${NC} Erro ao instalar $package"
+                log "ERROR: Falha na instalação de $package"
+                return 1
+            fi
+        fi
     fi
 }
 
@@ -38,19 +127,63 @@ install_cargo() {
     
     if command_exists "$binary"; then
         echo -e "${GREEN}✓${NC} $binary já está instalado"
+        log "SKIP: $binary já instalado"
     else
         echo -e "${YELLOW}⏳${NC} Instalando $package via cargo..."
-        cargo install "$package"
+        log "INSTALL: Iniciando instalação via cargo - $package"
+        
+        if $DRY_RUN; then
+            echo -e "${BLUE}[DRY-RUN]${NC} cargo install $package"
+        else
+            if cargo install "$package" >> "$LOG_FILE" 2>&1; then
+                echo -e "${GREEN}✓${NC} $package instalado com sucesso"
+                log "SUCCESS: $package instalado via cargo"
+            else
+                echo -e "${RED}✗${NC} Erro ao instalar $package via cargo"
+                log "ERROR: Falha na instalação via cargo - $package"
+                return 1
+            fi
+        fi
     fi
 }
 
-# Atualizar repositórios
-echo "📦 Atualizando repositórios..."
-sudo apt update
+# Verificar dependências críticas
+echo ""
+echo "🔍 Verificando dependências do sistema..."
+log "Verificando dependências críticas"
+
+DEPS_OK=true
+check_dependency "curl" || DEPS_OK=false
+check_dependency "git" || DEPS_OK=false
+check_dependency "sudo" || DEPS_OK=false
+
+if ! $DEPS_OK; then
+    echo -e "${RED}✗${NC} Dependências críticas faltando!"
+    echo "  Instale as dependências básicas e tente novamente."
+    exit 1
+fi
+
+echo -e "${GREEN}✓${NC} Todas dependências críticas presentes"
+echo ""
+
+echo "📝 Atualizando lista de pacotes..."
+echo ""
+log "Atualizando índices do APT"
+
+if $DRY_RUN; then
+    echo -e "${BLUE}[DRY-RUN]${NC} sudo apt update"
+else
+    if ! sudo apt update >> "$LOG_FILE" 2>&1; then
+        echo -e "${RED}✗${NC} Erro ao atualizar repositórios APT"
+        log "ERROR: Falha em apt update"
+        exit 1
+    fi
+fi
 
 echo ""
 echo "📦 Instalando pacotes via APT..."
 echo ""
+log "Iniciando instalação de pacotes"
 
 # Terminal
 if ! command_exists ghostty; then
@@ -121,10 +254,49 @@ install_apt "fzf" "fzf"
 install_apt "ripgrep" "rg"
 install_apt "fd-find" "fd" || sudo ln -sf $(which fdfind) /usr/local/bin/fd
 install_apt "bat" "bat" || sudo ln -sf $(which batcat) /usr/local/bin/bat
-install_apt "eza" "eza" || {
-    echo -e "${YELLOW}⚠${NC} eza não encontrado, instalando via cargo..."
-    command_exists cargo && cargo install eza
-}
+
+# eza pode não estar em repos - tentar APT, cargo ou binário
+if ! command_exists eza; then
+    echo -e "${YELLOW}⏳${NC} Instalando eza..."
+    log "INSTALL: Tentando instalar eza"
+    
+    if $DRY_RUN; then
+        echo -e "${BLUE}[DRY-RUN]${NC} sudo apt install -y eza || cargo install eza || wget binary"
+    else
+        # Tentar APT primeiro
+        if sudo apt install -y eza >> "$LOG_FILE" 2>&1; then
+            echo -e "${GREEN}✓${NC} eza instalado via APT"
+            log "SUCCESS: eza instalado via APT"
+        # Tentar Cargo como fallback
+        elif command_exists cargo && cargo install eza >> "$LOG_FILE" 2>&1; then
+            echo -e "${GREEN}✓${NC} eza instalado via cargo"
+            log "SUCCESS: eza instalado via cargo"
+        # Instalar via binário pré-compilado do GitHub
+        else
+            echo -e "${YELLOW}⚠${NC} Instalando eza via binário pré-compilado..."
+            log "INFO: Tentando instalar eza via binário GitHub"
+            
+            EZA_VERSION=$(curl -s "https://api.github.com/repos/eza-community/eza/releases/latest" | grep -Po '"tag_name": "v\K[^"]*' || echo "0.18.0")
+            EZA_URL="https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_x86_64-unknown-linux-gnu.tar.gz"
+            
+            if curl -sL "$EZA_URL" -o /tmp/eza.tar.gz >> "$LOG_FILE" 2>&1; then
+                tar -xzf /tmp/eza.tar.gz -C /tmp
+                sudo install -m 755 /tmp/eza /usr/local/bin/
+                rm -f /tmp/eza /tmp/eza.tar.gz
+                echo -e "${GREEN}✓${NC} eza instalado via binário GitHub"
+                log "SUCCESS: eza instalado via binário"
+            else
+                echo -e "${RED}✗${NC} Falha ao instalar eza"
+                echo "  Instale manualmente: cargo install eza"
+                log "ERROR: Todas tentativas de instalação do eza falharam"
+            fi
+        fi
+    fi
+else
+    echo -e "${GREEN}✓${NC} eza já está instalado"
+    log "SKIP: eza já instalado"
+fi
+
 install_apt "neovim" "nvim"
 
 # DevOps Tools
@@ -268,12 +440,8 @@ if [[ $install_extras =~ ^[Yy]$ ]]; then
     # Spotify TUI com streaming nativo
     install_cargo "spotatui" "spotatui"
     
-    # YouTube Music TUI
-    if ! command_exists ytui-music; then
-        echo -e "${YELLOW}⏳${NC} ytui-music requer instalação manual:"
-        echo "  https://github.com/sudipghimire533/ytui-music"
-        echo "  cargo install --git https://github.com/sudipghimire533/ytui-music.git"
-    fi
+    # NOTA: ytui-music foi removido devido a incompatibilidade com Rust 1.70+
+    # Veja YTUI_MUSIC.md para detalhes e alternativas
     
     # Quorum CLI (Session messaging TUI)
     if ! command_exists quorum; then
@@ -325,11 +493,12 @@ echo "  • lazydocker  - Docker TUI (https://github.com/jesseduffield/lazydocke
 echo "  • btop        - Monitor de sistema moderno"
 echo "  • k9s         - Kubernetes TUI (https://github.com/derailed/k9s)"
 echo "  • spotatui    - Spotify TUI com streaming nativo"
-echo "  • ytui-music  - YouTube Music TUI (https://github.com/sudipghimire533/ytui-music)"
 echo "  • discordo    - Discord TUI (https://github.com/ayn2op/discordo)"
 echo "  • bombadillo  - Gopher/Gemini browser (https://tildegit.org/sloum/bombadillo)"
 echo "  • quorum      - Session messaging TUI (https://github.com/Detrol/quorum-cli)"
 echo "  • brogue      - BrogueCE roguelike (https://github.com/tmewett/BrogueCE)"
+echo ""
+echo "  NOTA: ytui-music removido - incompatível com Rust 1.70+ (veja YTUI_MUSIC.md)"
 echo ""
 echo "📝 Próximos passos:"
 echo "  1. Execute ./setup-stow.sh para criar symlinks das configurações"

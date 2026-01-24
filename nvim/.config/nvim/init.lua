@@ -1,3 +1,7 @@
+-- Define leader ANTES de carregar qualquer plugin
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 -- Carrega as opções básicas
 require("phil.core.options")
 
@@ -14,8 +18,19 @@ require("phil.core.colorscheme")
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
     if vim.fn.argc() == 0 then
-      require("oil").open()
+      local ok, oil = pcall(require, "oil")
+      if ok then
+        oil.open()
+      end
     end
+  end,
+})
+
+-- Garantir que TreeSitter inicia para Markdown
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    vim.treesitter.start()
   end,
 })
 

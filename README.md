@@ -37,8 +37,8 @@ Configurações para um ambiente de desenvolvimento moderno e coeso no Gnome, fo
 - **[Bombadillo](https://tildegit.org/sloum/bombadillo)** - Gopher/Gemini browser TUI
 
 ### Entretenimento
-- **[Spotatui](https://github.com/ayn2op/spotatui)** - Spotify TUI (opcional)
-- **[ytui-music](https://github.com/sudipghimire533/ytui-music)** - YouTube Music TUI (opcional)
+- **[Spotatui](https://github.com/ayn2op/spotatui)** - Spotify TUI com streaming nativo (opcional)
+- **[ytui-music](https://github.com/sudipghimire533/ytui-music)** - YouTube Music TUI (opcional) - [Guia completo](YTUI_MUSIC.md)
 - **[BrogueCE](https://github.com/tmewett/BrogueCE)** - Roguelike game (opcional)
 
 ### Ferramentas CLI Essenciais
@@ -58,24 +58,64 @@ git clone https://github.com/seu-usuario/dotfiles.git ~/dotfiles
 cd ~/dotfiles
 ```
 
-### 2. Instale as aplicações
+### 2. Validar instalação (opcional mas recomendado)
 
-**Fedora/RHEL:**
+```bash
+chmod +x quick-validate.sh
+./quick-validate.sh
+```
+
+Este script verifica:
+- ✅ Sintaxe de todos os scripts
+- ✅ Dependências críticas (curl, git, sudo)
+- ✅ Estrutura de dotfiles
+- ✅ Aplicações já instaladas
+
+### 3. Instale as aplicações
+
+**Modo Básico (Fedora/RHEL):**
 ```bash
 ./install-packages.sh
 ```
 
-**Ubuntu/Debian:**
+**Modo Básico (Ubuntu/Debian):**
 ```bash
 ./install-packages-ubuntu.sh
 ```
 
-Estes scripts instalarão:
-- Pacotes via DNF (Fedora/RHEL)
-- Lazydocker via script oficial
-- Opcionalmente K9s, Spotatui e outras ferramentas
+**Opções Avançadas:**
 
-### 3. Configure os dotfiles com Stow
+```bash
+# Testar sem instalar (dry-run)
+./install-packages.sh --dry-run --yes
+
+# Modo debug (mostra cada comando)
+./install-packages.sh --debug --yes
+
+# Instalação automatizada (CI/CD)
+./install-packages.sh --yes
+
+# Mostrar ajuda
+./install-packages.sh --help
+```
+
+**Opções disponíveis:**
+- `--dry-run` - Simula instalação sem fazer mudanças
+- `--debug` - Ativa modo debug (set -x)
+- `--yes, -y` - Responde 'sim' automaticamente
+- `--help, -h` - Mostra ajuda
+
+**Log de instalação:** `~/.dotfiles-install.log`
+
+Estes scripts instalarão:
+- Pacotes via DNF/APT
+- Aplicações via Cargo (Rust)
+- Lazydocker via script oficial
+- Opcionalmente K9s, Vault, Packer
+- Oh My Zsh + Powerlevel10k
+- Plugins Zsh (40+ para DevOps)
+
+### 4. Configure os dotfiles com Stow
 
 ```bash
 ./setup-stow.sh --all
@@ -257,6 +297,115 @@ source ~/.zshrc
 O Powerlevel10k já está configurado com tema Gruvbox Material Dark! 🎨
 
 **Plugins DevOps:** Mais de 40 plugins do Oh My Zsh configurados para DevOps (Docker, Kubernetes, Terraform, AWS, Azure, GCloud, Ansible, etc.). Veja [ZSH_DEVOPS.md](ZSH_DEVOPS.md) para detalhes completos.
+
+## 🔧 Troubleshooting
+
+### Script de instalação falhou
+
+```bash
+# Ver log completo
+cat ~/.dotfiles-install.log
+
+# Executar em modo debug
+./install-packages.sh --debug --dry-run
+
+# Validar sintaxe
+bash -n install-packages.sh
+```
+
+### Pacote específico falhou
+
+Muitos pacotes são opcionais. Se um falhar:
+1. Verifique o log em `~/.dotfiles-install.log`
+2. Instale manualmente: `sudo dnf install <pacote>` ou `cargo install <pacote>`
+3. Continue com os próximos passos
+
+### Ghostty não disponível (Ubuntu)
+
+Ghostty não está nos repositórios do Ubuntu. Opções:
+1. Compilar do source: https://ghostty.org
+2. Usar outro terminal: Alacritty, Kitty, WezTerm
+
+### Plugins Zsh não funcionam
+
+```bash
+# Recarregar Zsh
+source ~/.zshrc
+
+# Verificar se Oh My Zsh está instalado
+ls -la ~/.oh-my-zsh
+
+# Reinstalar plugins
+cd ~/.oh-my-zsh/custom/plugins
+git clone https://github.com/zsh-users/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting
+```
+
+### Atalhos do GNOME não funcionam
+
+```bash
+# Executar novamente
+./setup-gnome-keys.sh
+
+# Verificar conflitos
+gsettings list-keys org.gnome.desktop.wm.keybindings
+gsettings list-keys org.gnome.shell.keybindings
+```
+
+### Stow conflita com arquivos existentes
+
+```bash
+# Fazer backup
+mkdir -p ~/dotfiles-backup
+mv ~/.zshrc ~/dotfiles-backup/
+mv ~/.config/nvim ~/dotfiles-backup/
+
+# Tentar novamente
+stow zsh nvim
+```
+
+### Cargo/Rust não instalado
+
+```bash
+# Fedora
+sudo dnf install rust cargo
+
+# Ubuntu
+sudo apt install cargo
+
+# Via rustup (recomendado)
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+### Go não instalado (para discordo)
+
+```bash
+# Fedora
+sudo dnf install golang
+
+# Ubuntu
+sudo apt install golang-go
+```
+
+### Temas não aparecem corretos
+
+1. Verifique se as fontes Nerd estão instaladas
+2. Configure o terminal para usar a fonte correta
+3. Recarregue as configurações
+4. Execute `p10k configure` para reconfigurar Powerlevel10k
+
+### ytui-music não funciona
+
+Veja o guia completo de troubleshooting em [YTUI_MUSIC.md](YTUI_MUSIC.md). Problemas comuns:
+- **mpv não encontrado**: Instale `mpv` e `libmpv-dev`
+- **yt-dlp não encontrado**: Instale `yt-dlp` via pip ou package manager
+- **Erro ao compilar**: Certifique-se que `mpv-devel` (Fedora) ou `libmpv-dev` (Ubuntu) está instalado
+
+Para mais detalhes, veja:
+- [VALIDATION.md](VALIDATION.md) - Validação e debug detalhado
+- [YTUI_MUSIC.md](YTUI_MUSIC.md) - Guia completo ytui-music
+- [ZSH_INSTALL.md](ZSH_INSTALL.md) - Problemas com Zsh/Oh My Zsh
+- [CLOUD_CLI_INSTALL.md](CLOUD_CLI_INSTALL.md) - Instalação de CLIs de cloud
 
 ## 🎯 Filosofia do Setup
 

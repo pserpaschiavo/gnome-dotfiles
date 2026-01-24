@@ -8,8 +8,8 @@ opt.shiftwidth = 2
 opt.expandtab = true      -- Transforma TAB em espaços
 opt.smartindent = true
 
--- Autocomando para Python: Forçar 4 espaços
-vim.api.nvim_create_autocmd("Filetype", {
+-- Usa FileType (case correto) para garantir que o autocmd dispare
+vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   callback = function()
     vim.opt_local.tabstop = 4

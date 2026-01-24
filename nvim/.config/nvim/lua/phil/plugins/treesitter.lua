@@ -13,7 +13,9 @@ treesitter.setup({
     "hcl", 
     "json",
     "markdown",
-    "markdown_inline"
+    "markdown_inline",
+    "regex",  -- Para noice.nvim
+    "vim"     -- Para noice.nvim
   },
   
   -- Instalação síncrona (apenas para as linguagens em ensure_installed)
@@ -25,7 +27,7 @@ treesitter.setup({
     enable = true, -- Ativa o syntax highlighting baseado em Treesitter
     additional_vim_regex_highlighting = false,
   },
-  
+
   -- Indentação inteligente baseada na estrutura do código
   indent = { enable = true }, 
 })

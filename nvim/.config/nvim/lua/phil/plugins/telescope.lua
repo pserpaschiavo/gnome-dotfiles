@@ -6,8 +6,8 @@ telescope.setup({
     -- Ajuste de bordas sugerido pelo Gruvbox Baby
     borderchars = {
       prompt = { "─", " ", " ", " ", "─", "─", " ", " " },
-      results = { " " },
-      preview = { " " },
+      results = { " ", " ", " ", " ", " ", " ", " ", " " },
+      preview = { " ", " ", " ", " ", " ", " ", " ", " " },
     },
     -- Configurações de layout
     layout_config = {
